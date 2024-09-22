@@ -29,13 +29,9 @@ rules:
 ---
 apiVersion: v1
 data:
-  application.yaml: |-
-    {
-      "app-detail": {
-        "name": "spring-boot-k8",
-        "group": "java"
-      }
-    }
+  application.properties: |-
+    app-detail.name=spring-boot-k8
+    app-detail.group=java
 kind: ConfigMap
 metadata:
   name: spring-boot-k8s-config-appyaml
@@ -44,11 +40,12 @@ metadata:
 apiVersion: v1
 data:
   PORT: "8080"
-  spring.cloud.config.enabled: "false"
+  spring.cloud.config.enabled: "true"
+  spring.cloud.kubernetes.config.enabled: "true"
   spring.cloud.kubernetes.config.enableApi: "false"
   spring.cloud.kubernetes.config.name: "spring-boot-k8s-config-appyaml"
   spring.cloud.kubernetes.config.namespace: "test"
-  spring.cloud.kubernetes.config.paths: "/opt/etc/conf/application.yaml"
+  spring.cloud.kubernetes.config.paths: "/opt/etc/conf/application.properties"
 kind: ConfigMap
 metadata:
   labels:
@@ -75,7 +72,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-k8s
-        image: doc185174/springboot-k8s-example:1.0
+        image: doc185174/springboot-k8s-example:2.0
         imagePullPolicy: IfNotPresent
         envFrom:
           - configMapRef:

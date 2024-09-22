@@ -14,6 +14,7 @@ public class SpringbootK8sDemoApplication {
 
 	@GetMapping("/message")
 	public String displayMessage(){
+		System.out.println("......" + config.getName());
 		return "Congratulation you successfully deployed your application to kubernetes !!" + config.getGroup();
 	}
 
