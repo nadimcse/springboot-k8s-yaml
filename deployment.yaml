@@ -2,15 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring-boot-k8s
+  namespace: test
 spec:
   selector:
     matchLabels:
       app: spring-boot-k8s
   replicas: 1
+  progressDeadlineSeconds: 60
   template:
     metadata:
       labels:
         app: spring-boot-k8s
+        namespace: test
     spec:
       containers:
         - name: spring-boot-k8s
@@ -18,11 +21,38 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - sleep 30
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: "800m"
+              memory: "800Mi"
+            requests:
+              cpu: "200m"
+              memory: "600Mi"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: springboot-k8s-svc
+  namespace: test
 spec:
   selector:
     app: spring-boot-k8s
