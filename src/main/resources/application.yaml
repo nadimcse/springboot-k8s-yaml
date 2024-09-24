@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-boot-k8s
+  cloud:
+    kubernetes:
+      client:
+        namespace: test
+

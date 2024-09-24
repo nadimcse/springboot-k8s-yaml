@@ -29,9 +29,13 @@ rules:
 ---
 apiVersion: v1
 data:
-  application.properties: |-
-    app-detail.name=spring-boot-k8
-    app-detail.group=java
+  application.yaml: |-
+    {
+        "app-detail": {
+          "name": "spring-boot-k1",
+          "group": "native java"
+        }
+    }
 kind: ConfigMap
 metadata:
   name: spring-boot-k8s-config-appyaml
@@ -39,13 +43,11 @@ metadata:
 ---
 apiVersion: v1
 data:
-  PORT: "8080"
-  spring.cloud.config.enabled: "true"
-  spring.cloud.kubernetes.config.enabled: "true"
+  spring.cloud.config.enabled: "false"
   spring.cloud.kubernetes.config.enableApi: "false"
   spring.cloud.kubernetes.config.name: "spring-boot-k8s-config-appyaml"
   spring.cloud.kubernetes.config.namespace: "test"
-  spring.cloud.kubernetes.config.paths: "/opt/etc/conf/application.properties"
+  spring.cloud.kubernetes.config.paths: "/config"
 kind: ConfigMap
 metadata:
   labels:
@@ -72,8 +74,8 @@ spec:
     spec:
       containers:
       - name: spring-boot-k8s
-        image: doc185174/springboot-k8s-example:6.0
-        imagePullPolicy: IfNotPresent
+        image: doc185174/springboot-k8s-example:18.0
+        imagePullPolicy: Always
         envFrom:
           - configMapRef:
               name: spring-boot-k8s-config
@@ -98,20 +100,21 @@ spec:
             port: 8080
           initialDelaySeconds: 10
           periodSeconds: 10
-        resources:
-          limits:
-            cpu: "800m"
-            memory: "800Mi"
-          requests:
-            cpu: "200m"
-            memory: "600Mi"
+#        resources:
+#          limits:
+#            cpu: "800m"
+#            memory: "800Mi"
+#          requests:
+#            cpu: "200m"
+#            memory: "600Mi"
         volumeMounts:
-          - mountPath: /opt/etc/conf
+          - mountPath: /config
             name: config-volume
       serviceAccount: spring-boot-k8s-sa
       serviceAccountName: spring-boot-k8s-sa
       volumes:
         - configMap:
+            defaultMode: 420
             name: spring-boot-k8s-config-appyaml
           name: config-volume
 ---
