@@ -32,8 +32,8 @@ data:
   application.yaml: |-
     {
         "app-detail": {
-          "name": "spring-boot-k1",
-          "group": "native java"
+          "name": "spring-boot-k8",
+          "group": "java 17"
         }
     }
 kind: ConfigMap
@@ -74,7 +74,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-k8s
-        image: doc185174/springboot-k8s-example:18.0
+        image: doc185174/springboot-k8s-example:20.0
         imagePullPolicy: Always
         envFrom:
           - configMapRef:
