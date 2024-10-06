@@ -1,8 +1,25 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: test
+  labels:
+    name: test
+---
+apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: spring-boot-k8s-sa
   namespace: test
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: spring-boot-k8s-sa-role
+  namespace: test
+rules:
+  - apiGroups: [""]
+    resources: ["pods","configmaps", "services"]
+    verbs: ["get", "watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -12,20 +29,11 @@ metadata:
 roleRef:
   kind: Role
   apiGroup: rbac.authorization.k8s.io
-  name: spring-boot-k8s-sa-view
+  name: spring-boot-k8s-sa-role
 subjects:
   - kind: ServiceAccount
+    namespace: test
     name: spring-boot-k8s-sa
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: spring-boot-k8s-sa-view
-  namespace: test
-rules:
-  - apiGroups: [""]
-    resources: ["pods","configmaps", "services"]
-    verbs: ["get", "watch", "list"]
 ---
 apiVersion: v1
 data:
@@ -110,8 +118,8 @@ spec:
         volumeMounts:
           - mountPath: /config
             name: config-volume
-      serviceAccount: spring-boot-k8s-sa
-      serviceAccountName: spring-boot-k8s-sa
+#      serviceAccount: spring-boot-k8s-sa
+#      serviceAccountName: spring-boot-k8s-sa
       volumes:
         - configMap:
             defaultMode: 420
