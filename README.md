@@ -16,3 +16,10 @@
 - kubectl get endpoints | grep kubernetes
 - kubectl port-forward -n test svc/springboot-k8s-svc 8080
 - kubectl config get-contexts
+
+# steps to deploy
+```
+ 1. deploy nginx ingress
+ 2. deploy cert manager
+ 3. deploy spring app 
+```
