@@ -4,7 +4,7 @@
 
 # Kind
 - kind get clusters
-- - kind create cluster --name butterfly-cluster --image kindest/node:v1.23.5
+- kind create cluster --name butterfly-cluster --image kindest/node:v1.23.5
 - kind delete cluster --name kind-test-cluster
 
 # Kubernetes

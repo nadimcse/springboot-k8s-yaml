@@ -148,7 +148,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: public.butterfly-dev.com
+    - host: pink.butterfly-np.com
       http:
         paths:
           - path: /

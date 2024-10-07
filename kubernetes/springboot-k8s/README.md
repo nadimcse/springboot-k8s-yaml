@@ -5,8 +5,8 @@
 
 - Deploy and run
     ```
-    cd kubernetes
+    cd springboot-k8s
     kubectl apply -f deployment.yaml
     kubectl delete -f deployment.yaml
-    curl -k https://public.butterfly-dev.com/message
+    curl -k https://pink.butterfly-np.com/message
     ```

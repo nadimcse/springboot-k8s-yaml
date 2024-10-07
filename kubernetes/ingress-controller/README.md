@@ -10,7 +10,6 @@
   curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
   chmod +x ./kubectl
   mv ./kubectl /usr/local/bin/kubectl
-
   ```
 - install helm
   ```
@@ -22,24 +21,23 @@
 - installation YAML  
   ```
     helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-  
     helm search repo ingress-nginx --versions
   
+    CHART_VERSION="4.4.0"
+    APP_VERSION="1.5.1"
+  
+    cd ingress-controller
     mkdir -p ./nginx/manifests/
   
-    kubectl create namespace butterfly
+    kubectl create namespace ingress-nginx
   
-    helm template ingress-nginx ingress-nginx \
-  --version ${CHART_VERSION} \
-  --namespace butterfly --insecure-skip-tls-verify \
-  > ./nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
-  
+    helm template ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --version ${CHART_VERSION} --namespace ingress-nginx --insecure-skip-tls-verify > ./nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
   ```    
 - Deploy ingress controller:  kubectl apply -f ./nginx/manifests/nginx-ingress.${APP_VERSION}.yaml
 - 
 - verify ingress
    ``` 
-   kubectl -n butterfly get pods
-   kubectl -n butterfly get svc
-   kubectl -n butterfly port-forward svc/ingress-nginx-controller 443
+   kubectl -n ingress-nginx get pods
+   kubectl -n ingress-nginx get svc
+   kubectl -n ingress-nginx port-forward svc/ingress-nginx-controller 443
   ```
