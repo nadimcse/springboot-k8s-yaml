@@ -136,6 +136,25 @@ spec:
     app: spring-boot-k8s
   ports:
     - protocol: "TCP"
-      port: 8080
+      port: 80
       targetPort: 8080
-  type: NodePort
+#  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: springboot-k8s-ing
+  namespace: test
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: public.butterfly-dev.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: springboot-k8s-svc
+                port:
+                  number: 80
