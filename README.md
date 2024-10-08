@@ -22,4 +22,5 @@
  1. deploy nginx ingress
  2. deploy cert manager
  3. deploy spring app 
+ 4. port forward ingress controller
 ```
