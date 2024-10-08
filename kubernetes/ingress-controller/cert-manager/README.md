@@ -8,5 +8,5 @@
 - helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.16.0 --set crds.enabled=true
 
 # deploy cert
-kubectl apply -f self-signed-tls-cert-manager.yaml 
+- kubectl apply -f self-signed-tls-cert-manager.yaml 
 
