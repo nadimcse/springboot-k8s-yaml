@@ -11,7 +11,7 @@
 - kubectl delete --all pods --n test
 - kubectl delete all --all -n test
 - kubectl exec -it spring-boot-k8s-76d4d66fcb-59bss -n test  -- /bin/sh
-- kubectl config  use-context minikube
+- kubectl config  use-context kind-butterfly-cluster
 - kubectl auth can-i get pods -n test --as=system:serviceaccount:test:spring-boot-k8s-sa
 - kubectl get endpoints | grep kubernetes
 - kubectl port-forward -n test svc/springboot-k8s-svc 8080

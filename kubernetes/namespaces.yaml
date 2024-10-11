@@ -9,13 +9,6 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: test
-  labels:
-    name: test
----
-apiVersion: v1
-kind: Namespace
-metadata:
   name: monitoring
   labels:
     name: monitoring
