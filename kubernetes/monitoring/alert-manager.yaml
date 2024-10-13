@@ -198,7 +198,7 @@ data:
           - smarthost: smtp-relay.brevo.com:587
             to: ''
             from: ''
-            auth_username: '7dd480001@smtp-brevo.com'
+            auth_username: ''
             auth_password: ''
             send_resolved: true
             require_tls: false
