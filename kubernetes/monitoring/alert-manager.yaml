@@ -196,8 +196,8 @@ data:
     - name: smtp
       email_configs:
           - smarthost: smtp-relay.brevo.com:587
-            to: 'nadim.sumon11@gmail.com'
-            from: 'nadim.sumon11@gmail.com'
+            to: ''
+            from: ''
             auth_username: '7dd480001@smtp-brevo.com'
             auth_password: ''
             send_resolved: true
