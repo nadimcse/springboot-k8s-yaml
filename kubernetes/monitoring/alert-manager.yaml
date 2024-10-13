@@ -203,7 +203,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: alertmanager
+  name: alertmanager-deployment
   namespace: monitoring
 spec:
   replicas: 1
@@ -271,7 +271,7 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: self-signed-ca-issuer
-  name: alertmanager
+  name: alertmanager-ing
   namespace: monitoring
 spec:
   ingressClassName: nginx
