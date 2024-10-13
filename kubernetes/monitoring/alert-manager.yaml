@@ -199,7 +199,7 @@ data:
             to: 'nadim.sumon11@gmail.com'
             from: 'nadim.sumon11@gmail.com'
             auth_username: '7dd480001@smtp-brevo.com'
-            auth_password: 'FY0gP6RhJE7Szvbn'
+            auth_password: ''
             send_resolved: true
             require_tls: false
 ---
