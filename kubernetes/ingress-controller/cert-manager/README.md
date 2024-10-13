@@ -13,4 +13,8 @@
 [//]: # (- kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.16.0/cert-manager.yaml)
 
 # deploy cert
-- kubectl apply -f self-signed-tls-cert-manager.yaml 
+- kubectl apply -f self-signed-tls-cert-manager.yaml
+
+# Link
+- https://medium.com/geekculture/a-simple-ca-setup-with-kubernetes-cert-manager-bc8ccbd9c2
+- https://tech.paulcz.net/blog/creating-self-signed-certs-on-kubernetes/

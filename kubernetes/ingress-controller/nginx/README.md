@@ -41,3 +41,6 @@
    kubectl -n ingress-nginx get svc
    kubectl -n ingress-nginx port-forward svc/ingress-nginx-controller 443
   ```
+  
+# Link
+- https://devopscube.com/setup-ingress-kubernetes-nginx-controller/

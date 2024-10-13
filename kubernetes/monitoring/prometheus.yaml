@@ -55,7 +55,7 @@ data:
         expr: sum(container_memory_usage_bytes) > 1
         for: 1m
         labels:
-          severity: slack
+          severity: smtp
         annotations:
           summary: High Memory Usage
   prometheus.yml: |-
