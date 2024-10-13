@@ -47,3 +47,17 @@ spec:
     name: self-signed-ca-issuer
     kind: ClusterIssuer
     group: cert-manager.io
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-ca-certificate
+  namespace: monitoring
+spec:
+  secretName: grafana-ca-secret
+  dnsNames:
+    - "grafana.butterfly-np.com"
+  issuerRef:
+    name: self-signed-ca-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io
