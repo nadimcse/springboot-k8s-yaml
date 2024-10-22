@@ -12,3 +12,24 @@ metadata:
   name: monitoring
   labels:
     name: monitoring
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jaeger
+  labels:
+    name: jaeger
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: observability
+  labels:
+    name: observability
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cassandra
+  labels:
+    name: cassandra

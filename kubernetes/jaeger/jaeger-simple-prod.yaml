@@ -1,0 +1,24 @@
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: simple-prod
+  namespace: jaeger
+spec:
+  strategy: production
+  collector:
+    maxReplicas: 1
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+  storage:
+    type: cassandra
+    options:
+      cassandra:
+        servers: cassandra.cassandra.svc.cluster.local
+        keyspace: jaeger_v1_dc1
+#        username: cassandra
+#        password: cassandra
+    cassandraCreateSchema:
+      datacenter: "dc1"
+      mode: "prod"

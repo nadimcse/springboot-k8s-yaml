@@ -83,7 +83,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-k8s
-        image: doc185174/springboot-k8s-example:20.0
+        image: doc185174/springboot-k8s-example:24.0
         imagePullPolicy: Always
         envFrom:
           - configMapRef:
